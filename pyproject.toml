@@ -1,10 +1,17 @@
 [project]
-name = "web"
+name = "bake-with-sophie"
 version = "0.1.0"
-description = "Add your description here"
+description = "Bake With Sophie - A Flask website with DaisyUI for sharing delicious recipes"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "flask",
     "tailwindcss",
 ]
+
+[project.scripts]
+bake-with-sophie = "app:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
