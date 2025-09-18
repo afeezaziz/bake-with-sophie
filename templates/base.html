@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bake With Sophie{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="bg-pink-100 shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                        S
+                    </div>
+                    <h1 class="text-2xl font-bold text-pink-600">Bake With Sophie</h1>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="text-pink-700 hover:text-pink-900 font-medium">Home</a>
+                    <a href="#" class="text-pink-700 hover:text-pink-900 font-medium">Recipes</a>
+                    <a href="#" class="text-pink-700 hover:text-pink-900 font-medium">About</a>
+                    <a href="#" class="text-pink-700 hover:text-pink-900 font-medium">Contact</a>
+                </div>
+                <button class="md:hidden">
+                    <svg class="w-6 h-6 text-pink-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="min-h-screen">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-pink-50 py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center text-pink-700">
+                <p>&copy; 2024 Bake With Sophie. Made with love and lots of butter!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

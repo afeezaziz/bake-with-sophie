@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Bake With Sophie{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-br from-pink-100 to-purple-100 py-20">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-5xl md:text-6xl font-bold text-pink-600 mb-6">
+            Bake With Sophie
+        </h1>
+        <p class="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+            Discover delicious homemade recipes, baking tips, and sweet treats that will fill your home with warmth and joy.
+        </p>
+        <button class="btn btn-primary btn-lg bg-pink-500 hover:bg-pink-600 text-white border-none">
+            Explore Recipes
+        </button>
+    </div>
+</div>
+
+<div class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-pink-600 mb-12">Featured Recipes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                <figure class="h-48 bg-pink-200 flex items-center justify-center">
+                    <span class="text-4xl">🧁</span>
+                </figure>
+                <div class="card-body">
+                    <h3 class="card-title text-pink-600">Vanilla Cupcakes</h3>
+                    <p class="text-gray-600">Fluffy vanilla cupcakes with buttercream frosting - perfect for any celebration!</p>
+                    <div class="card-actions justify-end">
+                        <button class="btn btn-outline btn-pink">View Recipe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                <figure class="h-48 bg-amber-200 flex items-center justify-center">
+                    <span class="text-4xl">🍪</span>
+                </figure>
+                <div class="card-body">
+                    <h3 class="card-title text-amber-600">Chocolate Chip Cookies</h3>
+                    <p class="text-gray-600">Classic chocolate chip cookies that are crispy on the outside and chewy on the inside.</p>
+                    <div class="card-actions justify-end">
+                        <button class="btn btn-outline btn-amber">View Recipe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                <figure class="h-48 bg-yellow-200 flex items-center justify-center">
+                    <span class="text-4xl">🥧</span>
+                </figure>
+                <div class="card-body">
+                    <h3 class="card-title text-yellow-600">Lemon Tart</h3>
+                    <p class="text-gray-600">Refreshing lemon tart with a buttery crust and smooth citrus filling.</p>
+                    <div class="card-actions justify-end">
+                        <button class="btn btn-outline btn-yellow">View Recipe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="py-16 bg-pink-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-pink-600 mb-4">About Sophie</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                Hi! I'm Sophie, a passionate home baker who believes that baking is not just about creating delicious treats,
+                but about sharing love and creating memories. Join me on my baking adventures!
+            </p>
+        </div>
+
+        <div class="flex justify-center">
+            <div class="card w-96 bg-white shadow-xl">
+                <div class="card-body items-center text-center">
+                    <div class="w-32 h-32 bg-pink-300 rounded-full flex items-center justify-center text-white text-5xl font-bold mb-4">
+                        S
+                    </div>
+                    <h3 class="text-xl font-bold text-pink-600">Sophie's Kitchen</h3>
+                    <p class="text-gray-600">Where every recipe is made with ❤️</p>
+                    <div class="card-actions">
+                        <button class="btn btn-pink">Follow My Journey</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
