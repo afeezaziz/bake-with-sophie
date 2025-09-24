@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}{{ recipe.title }} - Bake With Sophie{% endblock %}
+
+{% block content %}
+<section class="py-12 bg-white">
+  <div class="container mx-auto px-4">
+    <a href="{{ url_for('recipes') }}" class="text-pink-600 hover:text-pink-800">&larr; Back to Recipes</a>
+
+    <div class="mt-6 card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 bg-pink-200 rounded-full flex items-center justify-center text-3xl">{{ recipe.emoji }}</div>
+            <h1 class="text-3xl font-bold text-pink-700">{{ recipe.title }}</h1>
+          </div>
+          <button class="btn btn-circle btn-sm bg-pink-50 hover:bg-pink-100" data-fav-toggle data-slug="{{ recipe.slug }}" aria-pressed="false" title="Favorite">♡</button>
+        </div>
+        <p class="text-gray-700 mt-4">{{ recipe.summary }}</p>
+        {% if recipe.image %}
+        <div class="mt-6">
+          <img src="{{ recipe.image }}" alt="{{ recipe.title }}" class="w-full h-64 md:h-80 object-cover rounded-lg" loading="lazy">
+        </div>
+        {% endif %}
+
+        <div class="grid md:grid-cols-2 gap-8 mt-8">
+          <div>
+            <h2 class="text-xl font-semibold text-pink-600 mb-3">Ingredients</h2>
+            <ul class="list-disc list-inside space-y-1 text-gray-700">
+              {% for item in recipe.ingredients %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div>
+            <h2 class="text-xl font-semibold text-pink-600 mb-3">Steps</h2>
+            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+              {% for step in recipe.steps %}
+              <li>{{ step }}</li>
+              {% endfor %}
+            </ol>
+          </div>
+        </div>
+
+        <div class="mt-8 flex items-center gap-3">
+          <a href="{{ url_for('shop') }}" class="btn btn-primary bg-pink-500 border-none hover:bg-pink-600">Order Related Goodies</a>
+          <a href="{{ url_for('consulting') }}" class="btn btn-outline border-pink-500 text-pink-600">Book a Lesson</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

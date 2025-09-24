@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Recipes - Bake With Sophie{% endblock %}
+
+{% block content %}
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <h1 class="text-4xl font-bold text-pink-600 mb-8">All Recipes</h1>
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+      <input id="recipe-search" type="text" class="input input-bordered w-full md:w-96" placeholder="Search recipes by name...">
+      <div id="category-chips" class="flex flex-wrap gap-2">
+        <button type="button" class="btn btn-sm btn-outline btn-active" data-cat="all">All</button>
+        {% for cat in categories %}
+        <button type="button" class="btn btn-sm btn-outline" data-cat="{{ cat|lower }}">{{ cat }}</button>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for recipe in recipes %}
+      <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+           data-title="{{ recipe.title | lower }}"
+           data-cats="{{ (recipe.categories | default([], true)) | join(',') | lower }}"
+           data-slug="{{ recipe.slug }}">
+        <figure class="relative h-48 bg-pink-200 overflow-hidden">
+          {% if recipe.image %}
+          <img src="{{ recipe.image }}" alt="{{ recipe.title }}" class="w-full h-full object-cover" loading="lazy">
+          {% else %}
+          <div class="w-full h-full flex items-center justify-center">
+            <span class="text-5xl">{{ recipe.emoji }}</span>
+          </div>
+          {% endif %}
+          <button class="btn btn-circle btn-sm absolute right-3 top-3 bg-white/90 hover:bg-white" data-fav-toggle data-slug="{{ recipe.slug }}" aria-pressed="false" title="Favorite">♡</button>
+        </figure>
+        <div class="card-body">
+          <h3 class="card-title text-pink-600">{{ recipe.title }}</h3>
+          <p class="text-gray-600">{{ recipe.summary }}</p>
+          <div class="card-actions justify-end">
+            <a href="{{ url_for('recipe_detail', slug=recipe.slug) }}" class="btn btn-outline btn-pink">View Recipe</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

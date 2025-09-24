@@ -22,7 +22,7 @@
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.01) rotateZ(0.4deg);
 }
 
 /* Navigation active state */
@@ -58,5 +58,26 @@ nav a.active {
 
     .nav-mobile.active {
         transform: translateX(0);
+    }
+}
+
+/* Confetti animation */
+.confetti-piece {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    animation: confetti 2.2s ease-out forwards;
+    border-radius: 2px;
+}
+
+@keyframes confetti {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) rotate(var(--rot));
     }
 }

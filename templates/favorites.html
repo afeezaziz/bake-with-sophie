@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Favorites - Bake With Sophie{% endblock %}
+
+{% block content %}
+<section class="py-16 bg-white" data-favorites-page>
+  <div class="container mx-auto px-4">
+    <h1 class="text-4xl font-bold text-pink-600 mb-2">My Favorites</h1>
+    <p class="text-gray-600 mb-8">Your saved recipes live here. Add favorites anywhere you see a ♡ button.</p>
+
+    <div id="favorites-empty" class="card bg-base-100 shadow-md p-6 hidden">
+      <div class="text-center">
+        <p class="text-gray-700">No favorites yet. Start exploring delicious ideas!</p>
+        <a href="{{ url_for('recipes') }}" class="btn btn-pink mt-4">Browse Recipes</a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+      {% for recipe in recipes %}
+      <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+           data-title="{{ recipe.title | lower }}"
+           data-cats="{{ (recipe.categories | default([], true)) | join(',') | lower }}"
+           data-slug="{{ recipe.slug }}">
+        <figure class="relative h-48 bg-pink-200 overflow-hidden">
+          {% if recipe.image %}
+          <img src="{{ recipe.image }}" alt="{{ recipe.title }}" class="w-full h-full object-cover" loading="lazy">
+          {% else %}
+          <div class="w-full h-full flex items-center justify-center">
+            <span class="text-5xl">{{ recipe.emoji }}</span>
+          </div>
+          {% endif %}
+          <button class="btn btn-circle btn-sm absolute right-3 top-3 bg-white/90 hover:bg-white" data-fav-toggle data-slug="{{ recipe.slug }}" aria-pressed="false" title="Favorite">♡</button>
+        </figure>
+        <div class="card-body">
+          <h3 class="card-title text-pink-600">{{ recipe.title }}</h3>
+          <p class="text-gray-600">{{ recipe.summary }}</p>
+          <div class="card-actions justify-end">
+            <a href="{{ url_for('recipe_detail', slug=recipe.slug) }}" class="btn btn-outline btn-pink">View Recipe</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

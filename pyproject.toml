@@ -6,7 +6,6 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "flask",
-    "tailwindcss",
 ]
 
 [project.scripts]
@@ -15,3 +14,9 @@ bake-with-sophie = "app:app"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+# Include the top-level module to enable editable installs without a package dir
+only-include = [
+  "app.py",
+]

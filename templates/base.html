@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cupcake">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <nav class="bg-pink-100 shadow-md">
+    <nav class="bg-pink-100 shadow-md relative">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center space-x-2">
@@ -18,20 +18,52 @@
                     </div>
                     <h1 class="text-2xl font-bold text-pink-600">Bake With Sophie</h1>
                 </div>
-                <div class="hidden md:flex space-x-6">
-                    <a href="#" class="text-pink-700 hover:text-pink-900 font-medium">Home</a>
-                    <a href="#" class="text-pink-700 hover:text-pink-900 font-medium">Recipes</a>
-                    <a href="#" class="text-pink-700 hover:text-pink-900 font-medium">About</a>
-                    <a href="#" class="text-pink-700 hover:text-pink-900 font-medium">Contact</a>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="{{ url_for('home') }}" class="text-pink-700 hover:text-pink-900 font-medium">Home</a>
+                    <a href="{{ url_for('recipes') }}" class="text-pink-700 hover:text-pink-900 font-medium">Recipes</a>
+                    <a href="{{ url_for('favorites') }}" class="text-pink-700 hover:text-pink-900 font-medium">Favorites</a>
+                    <a href="{{ url_for('shop') }}" class="text-pink-700 hover:text-pink-900 font-medium">Shop</a>
+                    <a href="{{ url_for('consulting') }}" class="text-pink-700 hover:text-pink-900 font-medium">Consulting</a>
+                    <a href="{{ url_for('about') }}" class="text-pink-700 hover:text-pink-900 font-medium">About</a>
+                    <a href="{{ url_for('contact') }}" class="text-pink-700 hover:text-pink-900 font-medium">Contact</a>
+                    <button id="theme-toggle" class="btn btn-ghost btn-sm" title="Toggle theme" aria-label="Toggle theme">🌞</button>
                 </div>
-                <button class="md:hidden">
+                <button class="md:hidden" aria-controls="mobile-menu" aria-expanded="false" data-mobile-menu-button="true">
                     <svg class="w-6 h-6 text-pink-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
         </div>
+        <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 w-full bg-pink-100 shadow-lg z-50">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="{{ url_for('home') }}" class="text-pink-700 hover:text-pink-900 font-medium">Home</a>
+                    <a href="{{ url_for('recipes') }}" class="text-pink-700 hover:text-pink-900 font-medium">Recipes</a>
+                    <a href="{{ url_for('favorites') }}" class="text-pink-700 hover:text-pink-900 font-medium">Favorites</a>
+                    <a href="{{ url_for('shop') }}" class="text-pink-700 hover:text-pink-900 font-medium">Shop</a>
+                    <a href="{{ url_for('consulting') }}" class="text-pink-700 hover:text-pink-900 font-medium">Consulting</a>
+                    <a href="{{ url_for('about') }}" class="text-pink-700 hover:text-pink-900 font-medium">About</a>
+                    <a href="{{ url_for('contact') }}" class="text-pink-700 hover:text-pink-900 font-medium">Contact</a>
+                    <button id="theme-toggle-mobile" class="btn btn-outline btn-sm w-fit" title="Toggle theme">Toggle Theme</button>
+                </div>
+            </div>
+        </div>
     </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="container mx-auto px-4 mt-4">
+          {% for category, message in messages %}
+            <div class="alert {{ 'alert-success' if category == 'success' else 'alert-info' }} shadow-lg mb-3">
+              <div>
+                <span>{{ message }}</span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
 
     <main class="min-h-screen">
         {% block content %}{% endblock %}
@@ -41,9 +73,14 @@
         <div class="container mx-auto px-4">
             <div class="text-center text-pink-700">
                 <p>&copy; 2024 Bake With Sophie. Made with love and lots of butter!</p>
+                <p class="mt-2 text-sm text-gray-600">GLOBAL BEAUTEE ENTERPRISE</p>
+                <p class="text-sm text-gray-500">003652663-H</p>
             </div>
         </div>
     </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="btn btn-pink fixed bottom-6 right-6 shadow-lg hidden" aria-label="Back to top">↑ Top</button>
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
