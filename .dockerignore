@@ -1,0 +1,25 @@
+# Ignore local/dev files
+.venv
+.env
+*.env
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# VCS
+.git
+.gitignore
+
+# macOS
+.DS_Store
+
+# Python packaging/build
+*.egg-info/
+build/
+dist/
+
+# IDE
+.vscode/
+.idea/
